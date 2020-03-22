@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <ctime>
 #include <fstream>
 #include <chrono>
@@ -260,7 +260,7 @@ struct List {
 };
 
 void right_shift_matrix(int** matrix, int i, int j, int N) {//сдвиг на 1 вправо // j становится пустой
-	for (int q = i; q >= 0; q--) {//q >= 0 and q >= i - 1
+	for (int q = i; q >= 0; q--) {
 		for (int k = width - 1; k > j; k--)
 			matrix[q][k] = matrix[q][k - 1];
 		if (matrix[q][j] != -999998)//если не горизонтальная линия
@@ -560,7 +560,7 @@ int main()
 	double elapsed_seconds;
 	ifstream out_file;
 	ofstream in_file;
-	int choise, N_node = 0;
+	int choice, N_node = 0;
 	Node* root = nullptr;
 
 	while (1) {
@@ -570,10 +570,10 @@ int main()
 		cout << "3 - Вставка, удаление или поиск узла бинарного дерева\n";
 		cout << "4 - Обход бинарного дерева\n";
 		cout << "5 - Задание по варианту\n";
-		cin >> choise;
+		cin >> choice;
 		stream_cleaning();
 
-		if (choise == 1) {
+		if (choice == 1) {
 			if (root != nullptr) {
 				delete_tree(root);
 				root = nullptr;
@@ -582,10 +582,10 @@ int main()
 			cout << " 1 - N с клавиатуры, элементы рандомно\n";
 			cout << " 2 - элементы с клавиатуры\n";
 			cout << " 3 - элементы с файла\n ";
-			cin >> choise;
+			cin >> choice;
 			stream_cleaning();
 
-			switch (choise) {
+			switch (choice) {
 
 			case 1:
 				cout << "Введите количество элементов бинарного дерева: ";
@@ -626,15 +626,15 @@ int main()
 				}
 				break;
 			}
-			choise = 0;
+			choice = 0;
 		}
 
-		if (choise == 2 and root != nullptr) {
+		if (choice == 2 and root != nullptr) {
 			cout << " 1 - вывод дерева в файл\n";
 			cout << " 2 - вывод в консоль(не рекомендуется для деревьев размера больше 25)\n ";
-			cin >> choise;
+			cin >> choice;
 			stream_cleaning();
-			if (choise == 1) {
+			if (choice == 1) {
 				in_file.open("tree.txt");
 				tree_output(in_file, root, N_node, 1);
 				in_file.close();
@@ -644,18 +644,18 @@ int main()
 				tree_output(in_file, root, N_node, 0);
 				system("Pause");
 			}
-			choise = 0;
+			choice = 0;
 		}
-		else if (choise == 2)
+		else if (choice == 2)
 			cout << "Сначала создайте бинарное дерево.\n";
 
-		if (choise == 3 and root != nullptr) {
+		if (choice == 3 and root != nullptr) {
 			cout << " 1 - добавление узла\n";
 			cout << " 2 - удаление узла\n";
 			cout << " 3 - поиск узла \n";
-			cin >> choise;
+			cin >> choice;
 			stream_cleaning();
-			if (choise == 1) {
+			if (choice == 1) {
 				cout << "Добавить узел со значением: ";
 				int value = 0;
 				cin >> value;
@@ -670,7 +670,7 @@ int main()
 				else
 					cout << "Узел с таким значением уже существует.\n";
 			}
-			else if (choise == 2){
+			else if (choice == 2){
 				cout << "Удалить узел со значением: ";
 				int value = 0;
 				cin >> value;
@@ -685,7 +685,7 @@ int main()
 				else
 					cout << "Узел с значением " << value << " не найден\n";
 			}
-			else if (choise == 3){
+			else if (choice == 3){
 				cout << "Найти узел со значением: ";
 				int value = 0;
 				cin >> value;
@@ -700,12 +700,12 @@ int main()
 					cout << "Узел найден.\n";
 				cout << "Поиск " << 0.0000000001 * elapsed_seconds << " секунды.\n";
 			}
-			choise = 0;
+			choice = 0;
 		}
-		else if (choise == 3)
+		else if (choice == 3)
 			cout << "Сначала создайте бинарное дерево.\n";
 
-		if (choise == 4 and root != nullptr) {
+		if (choice == 4 and root != nullptr) {
 			cout << "Прямой обход дерева\n";
 			tree_direct_walk(root);
 			cout << "\nОбратный обход дерева\n";
@@ -713,12 +713,11 @@ int main()
 			cout << "\nСимметричный обход дерева\n";
 			tree_symmetrical_walk(root);
 			cout << endl;
-
 		}
-		else if (choise == 4)
+		else if (choice == 4)
 			cout << "Сначала создайте бинарное дерево.\n";
 
-		if (choise == 5 and root != nullptr) {
+		if (choice == 5 and root != nullptr) {
 			cout << "\nСоздайте еще одно бинарное дерево размерности N, заполненное \n"
 				"случайными числами (от – 99 до 99). Соедините два дерево в одно\n"
 				"Сравните скорость выполнение объединения при аналогичных\n"
@@ -726,7 +725,7 @@ int main()
 				"массив/двусвязный список)\n";
 			part_5(N_node, root);
 		}
-		else if (choise == 5)
+		else if (choice == 5)
 			cout << "Сначала создайте бинарное дерево.\n";
 
 		cout << endl;
